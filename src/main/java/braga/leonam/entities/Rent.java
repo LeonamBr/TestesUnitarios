@@ -1,18 +1,20 @@
 package braga.leonam.entities;
 
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Rent {
 	
 	private User user;
 	
-	private Movie movie;
+	private List<Movie> movie = new ArrayList<>();;
 	
 	private Instant rentDate;
 	
 	private Instant returnDate;
 	
-	private Double value;
+	private List<Double> value = new ArrayList<>();
 	
 	
 	public Rent() {
@@ -20,10 +22,9 @@ public class Rent {
 
 	public Rent(User user, Movie movie, Instant rentDate, Instant returnDate, Double value) {
 		this.user = user;
-		this.movie = movie;
+		this.movie.add(movie);
 		this.rentDate = rentDate;
 		this.returnDate = returnDate;
-		this.value = value;
 	}
 
 	public User getUser() {
@@ -34,11 +35,11 @@ public class Rent {
 		this.user = user;
 	}
 
-	public Movie getMovie() {
+	public List<Movie> getMovie() {
 		return movie;
 	}
-
-	public void setMovie(Movie movie) {
+	
+	public void setMovie(List<Movie> movie) {
 		this.movie = movie;
 	}
 
@@ -58,12 +59,19 @@ public class Rent {
 		this.returnDate = returnDate;
 	}
 
-	public Double getValue() {
+	public List<Double> getValue() {
 		return value;
 	}
 
-	public void setValue(Double value) {
-		this.value = value;
+	public void setValue(Movie movie) {
+		this.value.add(movie.getRentPrice());
+	}
+	
+	public double sumValue() {
+		double sum = 0.0;
+		for (Double value : this.value)
+			sum += value;
+		return sum;
 	}
 
 	@Override
