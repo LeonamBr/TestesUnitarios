@@ -3,6 +3,7 @@ package braga.leonam.services;
 import java.time.Instant;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import braga.leonam.entities.Movie;
@@ -13,13 +14,22 @@ import braga.leonam.exceptions.RentException;
 
 public class RentServiceTest {
 
+	private RentService service;
+	
+	private User user;
+	
+	private Movie movie;
+	
+	@Before
+	public void testSetup() {
+		service = new RentService();
+		user = new User("Leonam Braga");
+		movie = new Movie("Homem aranha", 3, 2.75);
+	}
+	
 	@Test
 	public void testValue() {
-
-		RentService service = new RentService();
-		User user = new User("Leonam Braga");
-		Movie movie = new Movie("Homem aranha", 3, 2.75);
-
+	
 		if (movie.getStock() < 1)
 			throw new OutOfStockException("this movie is out of stock");
 
@@ -31,10 +41,6 @@ public class RentServiceTest {
 
 	@Test
 	public void testRentDate() {
-
-		RentService service = new RentService();
-		User user = new User("Leonam Braga");
-		Movie movie = new Movie("Homem aranha", 3, 2.75);
 
 		if (movie.getStock() < 1)
 			throw new OutOfStockException("this movie is out of stock");
@@ -48,10 +54,6 @@ public class RentServiceTest {
 	@Test
 	public void testReturnDate() {
 
-		RentService service = new RentService();
-		User user = new User("Leonam Braga");
-		Movie movie = new Movie("Homem aranha", 3, 2.75);
-
 		if (movie.getStock() < 1)
 			throw new OutOfStockException("this movie is out of stock");
 
@@ -63,9 +65,7 @@ public class RentServiceTest {
 	@Test
 	public void testUser() {
 		
-		RentService service = new RentService();
 		User user = null;
-		Movie movie = new Movie("Homem aranha", 3, 2.75);
 		
 		try {
 			service.rentAMovie(user, movie);
@@ -79,8 +79,6 @@ public class RentServiceTest {
 	@Test
 	public void testMovie() {
 		
-		RentService service = new RentService();
-		User user = new User("Leonam Braga");
 		Movie movie = null;
 		
 		try {
