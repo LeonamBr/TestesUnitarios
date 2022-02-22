@@ -21,7 +21,7 @@ public class RentServiceTest {
 				
 		Rent rent = service.rentAMovie(user, movie);
 		
-		Assert.assertTrue(rent.getValue() == 2.75);
+		Assert.assertEquals(2.75, rent.getValue(), .01);
 		Assert.assertTrue(rent.getRentDate().equals(Instant.now()));
 		Assert.assertTrue(rent.getReturnDate().equals(Instant.now().plusSeconds(86400)));
 
