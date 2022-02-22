@@ -65,6 +65,36 @@ public class Rent {
 	public void setValue(Double value) {
 		this.value = value;
 	}
-		
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((rentDate == null) ? 0 : rentDate.hashCode());
+		result = prime * result + ((returnDate == null) ? 0 : returnDate.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Rent other = (Rent) obj;
+		if (rentDate == null) {
+			if (other.rentDate != null)
+				return false;
+		} else if (!rentDate.equals(other.rentDate))
+			return false;
+		if (returnDate == null) {
+			if (other.returnDate != null)
+				return false;
+		} else if (!returnDate.equals(other.returnDate))
+			return false;
+		return true;
+	}
 
 }
