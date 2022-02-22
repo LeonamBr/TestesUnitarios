@@ -2,6 +2,9 @@ package braga.leonam.services;
 
 import java.time.Instant;
 
+import org.junit.Assert;
+import org.junit.Test;
+
 import braga.leonam.entities.Movie;
 import braga.leonam.entities.Rent;
 import braga.leonam.entities.User;
@@ -19,7 +22,8 @@ public class RentService {
 		return rent;
 	}
 
-	public static void main(String[] args) {
+	@Test
+	public void test() {
 
 		RentService service = new RentService();
 		User user = new User("Leonam Braga");
@@ -27,9 +31,9 @@ public class RentService {
 				
 		Rent rent = service.rentAMovie(user, movie);
 		
-		System.out.println(rent.getValue() == 2.75);
-		System.out.println(rent.getRentDate().equals(Instant.now()));
-		System.out.println(rent.getReturnDate().equals(Instant.now().plusSeconds(86400)));
+		Assert.assertTrue(rent.getValue() == 2.75);
+		Assert.assertTrue(rent.getRentDate().equals(Instant.now()));
+		Assert.assertTrue(rent.getReturnDate().equals(Instant.now().plusSeconds(86400)));
 
 	}
 
